@@ -66,12 +66,12 @@ const doc = props.doc ?? {
 
       <button style="background:#86a7b4; height:60px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px;">
         <Eye style="width:16px; height:16px; margin-bottom:4px;" />
-        Unduh
+        Lihat
       </button>
 
       <button style="background:#86a7b4; height:60px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px;">
         <Download style="width:16px; height:16px; margin-bottom:4px;" />
-        Lihat
+        Unduh
       </button>
 
     </div>
