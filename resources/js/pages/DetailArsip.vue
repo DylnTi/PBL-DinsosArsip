@@ -7,7 +7,7 @@ defineOptions({
   layout: AuthLayout
 })
 
-// 🔥 AMBIL PROPS + FALLBACK (AMAN TANPA DB)
+//AMBIL PROPS + FALLBACK (AMAN TANPA DB)
 const { props } = usePage()
 
 const doc = props.doc ?? {

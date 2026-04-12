@@ -3,6 +3,7 @@ import { router } from '@inertiajs/vue3'
 import { arsip } from '@/routes'
 import { ref } from 'vue'
 import { Eye, Download, Heart } from 'lucide-vue-next'
+import { Link } from '@inertiajs/vue3'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 
 defineOptions({
@@ -48,7 +49,7 @@ const handleSearch = () => {
         />
       </div>
 
-      <!-- 📂 KATEGORI -->
+      <!-- KATEGORI -->
       <div class="bg-white rounded-lg px-4 py-3 flex items-center shadow-sm">
         <select v-model="kategori" class="text-sm outline-none w-full">
           <option value="">Semua Kategori</option>
@@ -58,7 +59,7 @@ const handleSearch = () => {
         </select>
       </div>
 
-      <!-- 📅 TANGGAL -->
+      <!-- TANGGAL -->
       <div class="bg-white rounded-lg px-4 py-3 flex items-center shadow-sm">
         <input
           type="date"
@@ -67,7 +68,7 @@ const handleSearch = () => {
         />
       </div>
 
-      <!-- 🔘 BUTTON -->
+      <!-- BUTTON -->
       <div class="bg-white rounded-lg px-4 py-3 flex items-center justify-center shadow-sm">
         <button 
           type="submit"
@@ -79,7 +80,7 @@ const handleSearch = () => {
 
     </form>
 
-    <!-- 📊 CARD STAT -->
+    <!-- CARD STAT -->
     <div class="grid md:grid-cols-3 gap-4">
       
       <div class="bg-[#7fa6b3] rounded-xl p-4 shadow-md flex justify-between items-center">
@@ -114,7 +115,7 @@ const handleSearch = () => {
 
     </div>
 
-    <!-- 📄 HEADER DOKUMEN -->
+    <!-- HEADER DOKUMEN -->
     <div class="flex items-center justify-between">
       <h2 class="bg-[#2f4fa2] text-white px-4 py-1 rounded-md text-sm">
         Dokumen Terbaru
@@ -122,11 +123,16 @@ const handleSearch = () => {
 
       <div class="flex items-center gap-2">
         <div class="h-2 bg-gray-300 w-40 rounded-full"></div>
-        <span class="text-xs bg-gray-200 px-2 py-1 rounded">Lihat Semua</span>
+        <Link
+          :href="arsip().url"
+          class="text-xs bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 transition"
+        >
+          Lihat Semua
+        </Link>
       </div>
     </div>
 
-    <!-- 📄 LIST DOKUMEN -->
+    <!-- LIST DOKUMEN -->
     <div class="space-y-4">
 
       <div
