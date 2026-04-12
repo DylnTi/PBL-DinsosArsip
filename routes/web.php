@@ -52,6 +52,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 })->name('arsip');
 
+Route::get('arsip/{id}', function ($id) {
+
+    // dummy dulu (nanti ganti dari DB)
+    $documents = [
+        [
+            "id" => 0,
+            "title" => "Proposal Program Pemberdayaan Masyarakat",
+            "kategori" => "Proposal",
+            "tanggal" => "25 Januari 2026",
+            "status" => "Public",
+            "file" => "/dummy.pdf"
+        ]
+    ];
+
+    return inertia('DetailArsip', [
+        'title' => 'Detail Arsip',
+        'doc' => $documents[$id] ?? null
+    ]);
+
+})->name('arsip.detail');
+
 });
 
 require __DIR__.'/settings.php';

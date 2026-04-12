@@ -52,36 +52,56 @@ const documents = [
     <!-- LIST -->
     <div class="space-y-4">
 
-        <div 
-            v-for="(doc, i) in documents" 
-            :key="i"
-            class="bg-[#7fa6b5] rounded-xl p-4 flex items-center gap-4 shadow-md"
-        >
+    <div 
+        v-for="(doc, i) in documents" 
+        :key="i"
+        @click="$inertia.visit(`/arsip/${doc.id ?? i}`)"
+        class="bg-[#7fa6b5] rounded-xl p-4 flex items-center gap-4 shadow-md cursor-pointer hover:shadow-lg transition"
+    >
 
-            <!-- ICON -->
-            <div class="w-14 h-14 bg-gray-200 rounded"></div>
+        <!-- ICON -->
+        <div class="w-14 h-14 bg-white rounded-lg flex items-center justify-center text-xl">
+        📄
+        </div>
 
-            <!-- CONTENT -->
-            <div class="flex-1 text-xs text-gray-900">
-                <p class="font-semibold text-sm mb-1">
-                    {{ doc.title }}
-                </p>
+        <!-- CONTENT -->
+        <div class="flex-1 text-sm text-gray-900 space-y-2">
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                    <span>No : {{ doc.nomor }}</span>
-                    <span>Kategori : {{ doc.kategori }}</span>
-                    <span>Tanggal : {{ doc.tanggal }}</span>
-                    <span>Ukuran : {{ doc.ukuran }}</span>
-                    <span>Divisi : {{ doc.divisi }}</span>
-                </div>
-            </div>
+        <p class="font-semibold text-base">
+            {{ doc.title }}
+        </p>
 
-            <!-- STATUS -->
-            <div class="bg-white text-xs px-3 py-1 rounded-full shadow">
-                {{ doc.status }}
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-1 text-xs">
+            <span><b>No:</b> {{ doc.nomor }}</span>
+            <span><b>Kategori:</b> {{ doc.kategori }}</span>
+            <span><b>Tanggal:</b> {{ doc.tanggal }}</span>
+            <span><b>Ukuran:</b> {{ doc.ukuran }}</span>
+            <span><b>Divisi:</b> {{ doc.divisi }}</span>
+        </div>
 
         </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="flex flex-col items-end gap-2">
+
+        <!-- STATUS -->
+        <div class="bg-white text-xs px-3 py-1 rounded-full shadow">
+            {{ doc.status }}
+        </div>
+
+        <!-- ACTION -->
+        <div class="flex gap-2">
+            <button class="bg-white px-3 py-1 text-xs rounded shadow hover:bg-gray-100">
+            Lihat
+            </button>
+            <button class="bg-white px-3 py-1 text-xs rounded shadow hover:bg-gray-100">
+            Unduh
+            </button>
+        </div>
+
+        </div>
+
+    </div>
 
     </div>
 
