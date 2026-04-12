@@ -1,66 +1,107 @@
-<script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-vue-next';
-import AppLogo from '@/components/AppLogo.vue';
-import NavFooter from '@/components/NavFooter.vue';
-import NavMain from '@/components/NavMain.vue';
-import NavUser from '@/components/NavUser.vue';
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
-import type { NavItem } from '@/types';
+<script setup>
+import { Link, usePage } from '@inertiajs/vue3'
+import { Home, Upload, FileText, History, Trash2, LogOut } from 'lucide-vue-next'
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
-];
+// ambil data user dari inertia
+const page = usePage()
+const user = page.props.auth?.user
 </script>
 
 <template>
-    <Sidebar collapsible="icon" variant="inset">
-        <SidebarHeader>
-            <SidebarMenu>
-                <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child>
-                        <Link :href="dashboard()">
-                            <AppLogo />
-                        </Link>
-                    </SidebarMenuButton>
-                </SidebarMenuItem>
-            </SidebarMenu>
-        </SidebarHeader>
+  <aside class="w-64 min-h-screen bg-gradient-to-b from-[#dbe3e7] to-[#2f6f7e] p-4 flex flex-col justify-between">
 
-        <SidebarContent>
-            <NavMain :items="mainNavItems" />
-        </SidebarContent>
+    <!-- ATAS -->
+    <div>
 
-        <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
-            <NavUser />
-        </SidebarFooter>
-    </Sidebar>
-    <slot />
+      <!-- PROFILE (BISA DIKLIK) -->
+      <Link href="/edit-profile" class="flex items-center gap-3 mb-6">
+        <img
+          :src="'https://i.pravatar.cc/40'"
+          class="w-10 h-10 rounded-full"
+        />
+
+        <div>
+          <!-- ambil nama user -->
+          <p class="text-sm font-semibold">
+            {{ user?.name || 'Guest' }}
+          </p>
+
+          <!-- email -->
+          <p class="text-xs text-gray-700">
+            {{ user?.email || '-' }}
+          </p>
+        </div>
+      </Link>
+
+      <hr class="mb-4 border-gray-400" />
+
+      <!-- MENU -->
+      <div class="space-y-3">
+
+        <Link href="/dashboard" class="flex items-center gap-3 bg-[#2f4fa2] text-white px-3 py-2 rounded-lg">
+          <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/20">
+            <Home class="w-5 h-5" />
+          </span>
+          <span class="text-sm">Beranda</span>
+        </Link>
+
+        <Link href="/unggah" class="flex items-center gap-3 bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300">
+          <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white">
+            <Upload class="w-5 h-5 text-gray-800" />
+          </span>
+          <span class="text-sm">Unggah</span>
+        </Link>
+
+        <Link href="/arsip" class="flex items-center gap-3 bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300">
+          <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white">
+            <FileText class="w-5 h-5 text-gray-800" />
+          </span>
+          <span class="text-sm">Arsip Saya</span>
+        </Link>
+
+        <Link href="/riwayat" class="flex items-center gap-3 bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300">
+          <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white">
+            <History class="w-5 h-5 text-gray-800" />
+          </span>
+          <span class="text-sm">Riwayat</span>
+        </Link>
+
+        <Link href="/sampah" class="flex items-center gap-3 bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300">
+          <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white">
+            <Trash2 class="w-5 h-5 text-gray-800" />
+          </span>
+          <span class="text-sm">Sampah</span>
+        </Link>
+
+      </div>
+
+      <!-- STORAGE -->
+      <div class="mt-6 bg-white/70 p-3 rounded-lg text-xs">
+        <p class="mb-2 font-semibold">Penyimpanan</p>
+
+        <div class="w-full bg-gray-300 h-2 rounded-full overflow-hidden">
+          <div class="bg-black h-full w-1/3"></div>
+        </div>
+
+        <p class="mt-2 text-[10px]">
+          xx GB / xx GB (xx%)
+        </p>
+      </div>
+
+    </div>
+
+    <!-- LOGOUT -->
+    <Link
+      href="/logout"
+      method="post"
+      as="button"
+      class="flex items-center gap-3 bg-gray-200 px-3 py-2 rounded-lg w-full text-left hover:bg-gray-300"
+    >
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-white">
+        <LogOut class="w-5 h-5 text-gray-800" />
+      </span>
+      <span class="text-sm">Keluar</span>
+    </Link>
+
+  </aside>
 </template>

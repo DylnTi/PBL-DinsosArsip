@@ -1,29 +1,45 @@
-import { createInertiaApp } from '@inertiajs/vue3';
-import { initializeTheme } from '@/composables/useAppearance';
-import AppLayout from '@/layouts/AppLayout.vue';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import SettingsLayout from '@/layouts/settings/Layout.vue';
+import { createInertiaApp } from '@inertiajs/vue3'
+import { createApp, h } from 'vue'
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import { initializeTheme } from '@/composables/useAppearance'
+import AppLayout from '@/layouts/AppLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import SettingsLayout from '@/layouts/settings/Layout.vue'
+
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
-    layout: (name) => {
-        switch (true) {
-            case name === 'Welcome':
-                return null;
-            case name.startsWith('auth/'):
-                return AuthLayout;
-            case name.startsWith('settings/'):
-                return [AppLayout, SettingsLayout];
-            default:
-                return AppLayout;
+
+    resolve: async (name: string) => {
+        const pages = import.meta.glob('./pages/**/*.vue')
+
+        const path = `./pages/${name}.vue`
+
+        if (pages[path]) {
+            return await pages[path]()
         }
+
+        const found = Object.keys(pages).find(p =>
+            p.endsWith(`${name}.vue`)
+        )
+
+        if (found) {
+            return await pages[found]()
+        }
+
+        throw new Error(`Page not found: ${name}`)
     },
+
+    setup({ el, App, props, plugin }) {
+        const vueApp = createApp({ render: () => h(App, props) })
+        vueApp.use(plugin)
+        vueApp.mount(el)
+    },
+
     progress: {
         color: '#4B5563',
     },
-});
+} as any)
 
-// This will set light / dark mode on page load...
-initializeTheme();
+initializeTheme()

@@ -1,14 +1,29 @@
-<script setup lang="ts">
-import AuthLayout from '@/layouts/auth/AuthSimpleLayout.vue';
-
-const { title = '', description = '' } = defineProps<{
-    title?: string;
-    description?: string;
-}>();
+<script setup>
+import Navbar from '@/components/Navbar.vue'
+import Sidebar from '@/components/AppSidebar.vue'
+import Footer from '@/components/footer.vue'
 </script>
 
 <template>
-    <AuthLayout :title="title" :description="description">
+  <div class="flex flex-col min-h-screen">
+
+    <!-- NAVBAR -->
+    <Navbar />
+
+    <div class="flex flex-1">
+
+      <!-- SIDEBAR -->
+      <Sidebar />
+
+      <!-- CONTENT -->
+      <main class="flex-1 bg-gray-100">
         <slot />
-    </AuthLayout>
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <Footer />
+
+  </div>
 </template>

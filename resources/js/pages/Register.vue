@@ -6,7 +6,7 @@ import GuestLayout from '@/layouts/GuestLayout.vue'
 defineOptions({ layout: GuestLayout })
 
 const form = ref({
-    nama: '',
+    name: '',
     nip: '',
     email: '',
     bagian: '',
@@ -28,9 +28,10 @@ function handleSubmit() {
             alert('Registrasi berhasil!')
             router.visit('/login')
         },
-        onError: () => {
-            alert('Gagal daftar, cek lagi datanya!')
-        }
+        onError: (errors) => {
+    console.log(errors)
+    alert(JSON.stringify(errors))
+}
     })
 }
 
@@ -73,7 +74,7 @@ function goToLogin() {
                 
                 <div>
                     <label class="label">Nama Lengkap</label>
-                    <input v-model="form.nama" type="text" class="field-input" />
+                    <input v-model="form.name" type="text" class="field-input" />
                 </div>
 
                 <div>
