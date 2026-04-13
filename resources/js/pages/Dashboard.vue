@@ -38,7 +38,7 @@ const handleSearch = () => {
     <!-- FORM -->
     <form @submit.prevent="handleSearch" class="bg-[#2f6f7e] p-4 rounded-xl shadow-md grid md:grid-cols-4 gap-4">
 
-      <!-- 🔍 SEARCH -->
+      <!-- SEARCH -->
       <div class="bg-white rounded-lg px-4 py-3 flex items-center shadow-sm">
         <span class="text-gray-400 mr-2">🔍</span>
         <input
@@ -122,7 +122,6 @@ const handleSearch = () => {
       </h2>
 
       <div class="flex items-center gap-2">
-        <div class="h-2 bg-gray-300 w-40 rounded-full"></div>
         <Link
           :href="arsip().url"
           class="text-xs bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 transition"
