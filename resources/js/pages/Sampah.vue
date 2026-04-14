@@ -25,12 +25,12 @@ const props = defineProps({
 
 // --- DATA DUMMY (Disesuaikan agar bisa mencoba banyak halaman) ---
 const displayItems = ref([
-  { id: 1, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/10/2023', doc_no: 'DOK/1012/11/2026', type: 'PNG' },
-  { id: 2, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/10/2023', doc_no: 'DOK/1012/11/2026', type: 'PDF' },
-  { id: 3, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/10/2023', doc_no: 'DOK/1012/11/2026', type: 'XLS' },
-  { id: 4, title: 'Arsip Laporan Tahunan 2023', date: '25/10/2023', doc_no: 'DOK/1012/11/2027', type: 'PDF' },
-  { id: 5, title: 'Surat Keputusan Kadis', date: '26/10/2023', doc_no: 'DOK/1012/11/2028', type: 'DOC' },
-  { id: 6, title: 'Data Inventaris Kantor 2024', date: '27/10/2023', doc_no: 'DOK/1012/11/2029', type: 'XLS' },
+  { id: 1, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/01/2026', doc_no: 'DOK/1012/11/2026', type: 'PNG' },
+  { id: 2, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/01/2026', doc_no: 'DOK/1012/11/2026', type: 'PDF' },
+  { id: 3, title: 'Dokumentasi Rapat Penandatanganan Peresmian', date: '22/01/2026', doc_no: 'DOK/1012/11/2026', type: 'XLS' },
+  { id: 4, title: 'Arsip Laporan Tahunan 2026', date: '25/01/2026', doc_no: 'DOK/1012/11/2027', type: 'PDF' },
+  { id: 5, title: 'Surat Keputusan Kadis', date: '26/01/2026', doc_no: 'DOK/1012/11/2028', type: 'DOC' },
+  { id: 6, title: 'Data Inventaris Kantor 2026', date: '27/01/2026', doc_no: 'DOK/1012/11/2029', type: 'XLS' },
 ])
 
 // --- LOGIK PAGINATION ---
@@ -186,7 +186,7 @@ const handleExecute = () => {
   </div>
 
   <div v-if="showModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-    <div class="bg-[#94B3C1] border-2 border-gray-400 w-full max-w-sm rounded-[40px] shadow-2xl overflow-hidden p-10 text-center">
+    <div class="bg-[#94B3C1] shadow 2x1 border-2 border-gray-400 w-full max-w-sm rounded-[40px] shadow-black overflow-hidden p-10 text-center">
       <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-500 shadow-md">
         <AlertTriangle class="w-12 h-12 text-red-600" />
       </div>
