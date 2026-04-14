@@ -186,8 +186,13 @@ const handleExecute = () => {
   </div>
 
   <div v-if="showModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-    <div class="bg-[#94B3C1] shadow 2x1 border-2 border-gray-400 w-full max-w-sm rounded-[40px] shadow-black overflow-hidden p-10 text-center">
-      <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-500 shadow-md">
+    <div class="relative bg-[#94B3C1] border-2 border-gray-400 w-full max-w-sm rounded-[40px] overflow-hidden p-10 text-center shadow-[2px_1px_15px_rgba(0,0,0,1)]"
+         style="background-image: url('/image/moroccan-flower-dark.png'); 
+                background-blend-mode: soft-light; 
+                background-size: 180px; 
+                opacity: 0.9; 
+                background-repeat: repeat;">
+                <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-500 shadow-md">
         <AlertTriangle class="w-12 h-12 text-red-600" />
       </div>
 
